@@ -1,0 +1,24 @@
+{
+    "count": 19,
+    "results": [
+        { "id": "farming", "title": "farming" },
+        { "id": "biota", "title": "biota" },
+        { "id": "boundaries", "title": "boundaries" },
+        { "id": "climatologyMeteorologyAtmosphere", "title": "climatology Meteorology Atmosphere" },
+        { "id": "economy", "title": "economy" },
+        { "id": "elevation", "title": "elevation" },
+        { "id": "environment", "title": "environment" },
+        { "id": "geoscientificInformation", "title": "geoscientificInformation" },
+        { "id": "health", "title": "health" },
+        { "id": "imageryBaseMapsEarthCover", "title": "imageryBaseMapsEarthCover" },
+        { "id": "intelligenceMilitary", "title": "intelligenceMilitary" },
+        { "id": "inlandWaters", "title": "inlandWaters" },
+        { "id": "location", "title": "location" },
+        { "id": "oceans", "title": "oceans" },
+        { "id": "planningCadastre", "title": "planningCadastre" },
+        { "id": "society", "title": "society" },
+        { "id": "structure", "title": "structure" },
+        { "id": "transportation", "title": "transportation" },
+        { "id": "utilitiesCommunication", "title": "utilitiesCommunication" }
+    ]
+}

@@ -1,0 +1,58 @@
+{
+    "name": "src",
+    "version": "0.1.0",
+    "private": true,
+    "scripts": {
+        "serve": "vue-cli-service serve",
+        "build": "vue-cli-service build",
+        "lint": "vue-cli-service lint"
+    },
+    "dependencies": {
+        "@koumoul/vjsf": "^2.11.3",
+        "axios": "^0.26.1",
+        "core-js": "^3.8.3",
+        "util": "^0.12.4",
+        "vue": "^2.6.14",
+        "vue-axios": "^3.4.1",
+        "vuetify": "^2.6.0",
+        "xml2js": "^0.4.23"
+    },
+    "devDependencies": {
+        "@babel/core": "^7.12.16",
+        "@babel/eslint-parser": "^7.12.16",
+        "@vue/cli-plugin-babel": "~4.5.6",
+        "@vue/cli-plugin-eslint": "~4.5.6",
+        "@vue/cli-plugin-vuex": "~4.5.6",
+        "@vue/cli-service": "~4.5.6",
+        "@vue/eslint-config-prettier": "^6.0.0",
+        "babel-eslint": "^10.1.0",
+        "eslint": "^6.7.2",
+        "eslint-plugin-prettier": "^3.1.3",
+        "eslint-plugin-vue": "^6.2.2",
+        "prettier": "^2.1.2",
+        "sass": "~1.32.0",
+        "sass-loader": "^10.0.0",
+        "vue-cli-plugin-vuetify": "~2.4.8",
+        "vue-template-compiler": "^2.6.14",
+        "vuetify-loader": "^1.7.0"
+    },
+    "eslintConfig": {
+        "root": true,
+        "env": {
+            "node": true
+        },
+        "extends": [
+            "plugin:vue/essential",
+            "eslint:recommended"
+        ],
+        "parserOptions": {
+            "parser": "@babel/eslint-parser"
+        },
+        "rules": {}
+    },
+    "browserslist": [
+        "> 1%",
+        "last 2 versions",
+        "not dead"
+    ]
+}

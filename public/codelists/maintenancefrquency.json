@@ -1,0 +1,53 @@
+{
+    "count": 19,
+    "results": [
+        {
+            "id": "continual",
+            "title": "continual"
+        },
+        {
+            "id": "daily",
+            "title": "daily"
+        },
+        {
+            "id": "weekly",
+            "title": "weekly"
+        },
+        {
+            "id": "fortnightly",
+            "title": "fortnightly"
+        },
+        {
+            "id": "monthly",
+            "title": "monthly"
+        },
+        {
+            "id": "quarterly",
+            "title": "quarterly"
+        },
+        {
+            "id": "biannually",
+            "title": "biannually"
+        },
+        {
+            "id": "annually",
+            "title": "annually"
+        },
+        {
+            "id": "asNeeded",
+            "title": "asNeeded"
+        },
+        {
+            "id": "irregular",
+            "title": "irregular"
+        },
+        {
+            "id": "notPlanned",
+            "title": "notPlanned"
+        },
+        {
+            "id": "unknown",
+            "title": "unknown"
+        }
+    ]
+}

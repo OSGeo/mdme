@@ -1,0 +1,39 @@
+{
+    "citation": {
+        "citations": []
+    },
+    "distribution": {
+        "distributions": [
+            {
+                "href": "https://maps.isric.org",
+                "protocol": "http://www.opengis.net/def/serviceType/ogc/wms"
+            }
+        ]
+    },
+    "contact": {
+        "contacts": [
+            {
+                "organisation": "ISRIC World Soil Information",
+                "email": "info@isric.org",
+                "role": "pointOfContact"
+            }
+        ]
+    },
+    "identification": {
+        "id":"",
+        "title":"",
+        "abstract":"",
+        "temporalextent":"",
+        "geographicalextent":"",
+        "modDate":"",
+        "keywords": [],
+        "language": "en",
+        "status": "completed",
+        "maintenancefrequency": "irregular",
+        "usageconstraints": "CC-BY",
+        "accessconstraints": "0",
+        "topic": "geoscientificInformation",
+        "scale":"",
+        "crs":""
+    }
+}

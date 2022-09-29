@@ -1,0 +1,13 @@
+{
+    "count": 8,
+    "results": [
+        { "id": "CC0", "title": "Public domain (CC-zero)" },
+        { "id": "CC-BY", "title": "CC-BY Attribution" },
+        { "id": "CC BY-SA", "title": "CC BY-SA Attribution-ShareAlike" },
+        { "id": "CC BY-ND", "title": "CC BY-ND Attribution-NoDerivs" },
+        { "id": "CC BY-NC", "title": "CC BY-NC Attribution-NonCommercial" },
+        { "id": "CC BY-NC-SA", "title": "CC BY-NC-SA Attribution-NonCommercial-ShareAlike" },
+        { "id": "CC BY-NC-ND", "title": "CC BY-NC-ND Attribution-NonCommercial-NoDerivs" },
+        { "id": "Other", "title": "Other" }
+    ]
+}

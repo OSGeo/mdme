@@ -1,0 +1,15 @@
+{
+    "count": 10,
+    "results": [
+        { "id": "0", "title": "No limitations to public access" },
+        { "id": "1", "title": "Limited because it would affect the confidentiality of the proceedings of public authorities, where such confidentiality is provided for by law." },
+        { "id": "2", "title": "Limited because it would affect international relations, public security or national defence" },
+        { "id": "3", "title": "Limited because it would affect the course of justice, the ability of any person to receive a fair trial or the ability of a public authority to conduct an enquiry of a criminal or disciplinary nature" },
+        { "id": "4", "title": "Limited because it would affect intellectual property rights" },
+        { "id": "5", "title": "Limited because it would affect the confidentiality of commercial or industrial information, where such confidentiality is provided for by national or Community law to protect a legitimate economic interest, including the public interest in maintaining statistical confidentiality and tax secrecy." },
+        { "id": "6", "title": "Limited because it would affect the confidentiality of personal data and/or files relating to a natural person where that person has not consented to the disclosure of the information to the public, where such confidentiality is provided for by national or Community law." },
+        { "id": "7", "title": "Limited because it would affect the interests or protection of any person who supplied the information requested on a voluntary basis without being under, or capable of being put under, a legal obligation to do so, unless that person has consented to the release of the information concerned." },
+        { "id": "8", "title": "Limited because it would affect the protection of the environment to which such information relates, such as the location of rare species." },
+        { "id": "9", "title": "Other" }
+    ]
+}
