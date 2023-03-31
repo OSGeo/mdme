@@ -9,7 +9,8 @@
         max-width="120"
         contain
       ></v-img></a>
-      <v-btn id="mnu" color="primary" class="me-2"> File
+      <v-btn id="mnu" color="primary" class="me-2"> 
+        File &nbsp; &#9660;
         <v-menu activator="#mnu" location="bottom">
           <v-list>
             <v-list-item @click="filedialog = true">
