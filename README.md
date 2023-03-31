@@ -1,32 +1,48 @@
-# mdme [model-driven-metadata-editor]
 
-App to fetch metadata from a dataset and complete the annotations in a basic web form.
+![MDME](./src/components/img/logo.svg)
 
-The editor supports multiple metadata models (and can easily be extended),  currently [pygeometa](https://github.com/geopython/pygeometa)'s mcf (a yaml encoding oriented to iso19139) and ogcapi-records.
+Web based (node/vuejs) application to populate yml/json oriented metadata records.
 
-Models are defined in `/models/{model}/model.json`. Used by [vjsf](https://koumoul-dev.github.io/vuetify-jsonschema-form/latest/examples#basic) component to build the form. Some special fields ('x-display: 'hidden') added for vizualisations. Which model to use is defined in `app.vue`.
+The editor supports multiple metadata models (and can easily be extended),  currently supported are: 
+- [mcf](https://geopython.github.io/pygeometa/reference/mcf/) 
+- [ogcapi-records](https://ogcapi.ogc.org/records/) 
+- [datapackage](https://specs.frictionlessdata.io/data-package/)
+
+Models are defined in `/models/{model}/model.json`. Used by [vjsf](https://koumoul-dev.github.io/vuetify-jsonschema-form/latest/examples#basic) component to build the form. Some special fields ('x-display: 'hidden') added for vizualisations. 
 
 Capabilities: 
-- import metadata from:
+- Open local metadata
+- Import metadata from:
   - DOI
   - WMS
-  - iso19139 upload/reference (use python api to parse iso19139)
-  - upload dataset (use python api to extract metadata from data; projection, bounds, name, format, column names, data-type)
-- edit metadata, the editor is generated from json-schema, change the editor by updating the schema file  
-- export metadata as mcf
-- persist metadata via python api (on git/pycsw/...), hope to support OGC API Records transactions soon
+  - iso19139 
+- edit metadata
+- save metadata
 
-## installation
+## Installation
 
-requires 
+Requires: 
 - NODE 
 - YARN
 
 ```
+git clone https://github.com/osgeo/mdme
 yarn install
 yarn serve
 ```
 
-visit http://localhost:8080
+Visit [localhost:8000](http://localhost:8080).
 
-Import a record, or move to 'annotate' tab directly to start editing
+Open, Import a record, or directly start editing.
+
+Save the generated file as mcf and postprocess it in [pygeometa](https://geopython.github.io/pygeometa).
+
+## Configuration
+
+Configure `vocab` in app.vue on which schema to use, [mcf](https://geopython.github.io/pygeometa/reference/mcf/), [ogcapi-records](https://ogcapi.ogc.org/records/) or [datapackage](https://specs.frictionlessdata.io/data-package/).
+
+## License 
+
+MIT
+
+

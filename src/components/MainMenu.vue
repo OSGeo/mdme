@@ -1,31 +1,66 @@
 <template>
-  <v-container>
-    <v-row class="text-left">
-      <v-col cols="12">
-       <p>&nbsp;</p> <p>&nbsp;</p>
-              <h1>Welcome</h1>
-              <p>&nbsp;</p> 
-              <p>
-              This app aims to facilitate the registration of a dataset based on common conventions.
-              Properties of a dataset are extracted from existing sources and/or entered manually.
-              </p>
-              <p>
-              In the first step you are invited to add references to existing resources related to the dataset.
-              The app will try to parse this information in order to fetch existing metadata.
-              </p><p>
-              In the next step (change tab above) you can complete any resource information in a web form.
-              Finally, you can save and/or export the results in various formats.
-              </p>
-              <p>&nbsp;</p>
-              <h2>Existing resources</h2>
-              <p>&nbsp;</p>
+  <div>
+    <v-app-bar :elevation="0">
+      <a href="https://github.com/osgeo/mdme">
+      <v-img
+        class="mx-5"
+        v-bind:src="require('./img/logo.svg')"
+        max-height="80"
+        max-width="120"
+        contain
+      ></v-img></a>
+      <v-btn id="mnu" color="primary" class="me-2"> File
+        <v-menu activator="#mnu" location="bottom">
+          <v-list>
+            <v-list-item @click="filedialog = true">
+              <v-list-item-title>Open</v-list-item-title>
+            </v-list-item>
+            <v-list-item @click="reset"> <!-- todo: if dirty, warn to save -->
+              <v-list-item-title>New</v-list-item-title>
+            </v-list-item>
+            <v-list-item @click="xmldialog = true">
+              <v-list-item-title>Import XML</v-list-item-title>
+            </v-list-item>
+            <v-list-item @click="doidialog = true">
+              <v-list-item-title>Import DOI</v-list-item-title>
+            </v-list-item>
+            <v-list-item @click="wmsdialog = true">
+              <v-list-item-title>Import from WMS</v-list-item-title>
+            </v-list-item>
+          </v-list>
+        </v-menu>
+      </v-btn>
 
-    <v-expansion-panels accordion>
-      <v-expansion-panel>
-        <v-expansion-panel-header>Import DOI metadata</v-expansion-panel-header>
-        <v-expansion-panel-content>
-        
-                If a DOI is registerd for this dataset, Bibtex metadata will be extracted for this DOI
+      <v-btn class="me-auto" @click="saveFile">Save</v-btn>
+
+      <a href="https://github.com/osgeo/mdme" class="text-decoration-none" target="_blank">
+      <v-btn>Documentation</v-btn></a>
+ 
+  </v-app-bar> 
+
+  <v-dialog v-model="filedialog" width="auto">
+      <v-card>
+      <v-card-title> Open MCF </v-card-title>
+        <v-card-text> 
+        <p>Open a local Metadata Control File</p>
+
+        <file-reader @load="data = $event"></file-reader>
+        </v-card-text>
+        <v-card-actions>
+          <v-btn @click="MCFOpen"
+                    elevation="2"
+                    small color="primary"
+                  > Open </v-btn>
+          <v-btn small @click="filedialog = false">Close Dialog</v-btn>
+        </v-card-actions>
+      </v-card>
+    </v-dialog>
+
+  <v-dialog v-model="doidialog" width="auto">
+    <v-card>
+      <v-card-title>Import DOI metadata</v-card-title>
+      <v-card-text> 
+        If a DOI is registerd for this dataset, Bibtex metadata will be extracted for this DOI
             
                 <v-text-field 
                   v-model="doi"
@@ -33,18 +68,23 @@
                   description=""
                 ></v-text-field>
 
-                <v-btn @click="fetchDOI"
+        </v-card-text>
+        <v-card-actions>
+          <v-btn @click="fetchDOI"
                     elevation="2"
-                    small
+                    small color="primary"
                   > Fetch DOI </v-btn>
-         </v-expansion-panel-content>
-      </v-expansion-panel>
+          <v-btn small @click="doidialog = false">Close Dialog</v-btn>
+        </v-card-actions>
+      </v-card>
+    </v-dialog>
 
-      <v-expansion-panel>
-        <v-expansion-panel-header>Import metadata record</v-expansion-panel-header>
-        <v-expansion-panel-content>
-                <!-- try https://nationaalgeoregister.nl/geonetwork/srv/api/records/5951efa2-1ff3-4763-a966-a2f5497679ee/formatters/xml -->
-                <p>If this dataset is registered in a catalog, add a link to the record (as iso19139).</p>
+    <v-dialog v-model="xmldialog" width="auto">
+      <v-card>
+        <v-card-title>Import xml metadata</v-card-title>
+        <v-card-text> 
+        
+        If this dataset is registered in a catalog, add a link to the record (as iso19139).
                 <v-text-field
                   v-model="record"
                   label="Metadata record"
@@ -59,14 +99,23 @@
                   stored along side a tif or shapefile as {filename}.shp.xml.
                 </p>
                 <file-reader @load="parseMetadata($event)"></file-reader>
-                
-        </v-expansion-panel-content>
-      </v-expansion-panel>
+        </v-card-text>
+        <v-card-actions>
+          <v-btn @click="fetchDOI"
+                    elevation="2"
+                    small color="primary"
+                  > Fetch DOI </v-btn>
+          <v-btn small @click="xmldialog = false">Close Dialog</v-btn>
+        </v-card-actions>
+      </v-card>
+    </v-dialog>   
 
-      <v-expansion-panel>
-        <v-expansion-panel-header>Web Map Service</v-expansion-panel-header>
-        <v-expansion-panel-content>
-                <p>The dataset is exposed as a OGC WMS Webservice?</p>
+
+    <v-dialog v-model="wmsdialog" width="auto">
+      <v-card>
+        <v-card-title>Web Map Service</v-card-title>
+        <v-card-text>    
+          <p>The dataset is exposed as a OGC WMS Webservice?</p>
 
                 <v-text-field
                   v-model="service"
@@ -84,40 +133,41 @@
                           item-text="title"
                           item-value="name"
                           multiple
-                        ></v-select>
-
-                  <v-btn @click="getLayer"
+                        ></v-select>   
+        </v-card-text>
+        <v-card-actions>
+          <v-btn @click="getLayer"
                     elevation="2"
-                    small
+                    small color="primary"
                   > Get layer </v-btn>
-        </v-expansion-panel-content>
-      </v-expansion-panel>
+          <v-btn small @click="wmsdialog = false">Close Dialog</v-btn>
+        </v-card-actions>
+      </v-card>
+    </v-dialog>
 
-      <v-expansion-panel>
-        <v-expansion-panel-header>Upload dataset</v-expansion-panel-header>
-        <v-expansion-panel-content>
-
-                <p>Upload a sample of the dataset</p>
-
-                <file-reader @load="data = $event"></file-reader>
-              
-        </v-expansion-panel-content>
-      </v-expansion-panel>
-    </v-expansion-panels>
-
-      </v-col>
-    </v-row>
-  </v-container>
+    
+ 
+</div>
 </template>
 
 <script>
 import FileReader from "./FileReader";
+//import $RefParser from "@apidevtools/json-schema-ref-parser";
+//import mergeAllOf from "json-schema-merge-allof";
+import { parse } from "yaml";
+//import { clean } from "@/scripts/helpers.js";
+
 var parseString = require('xml2js').parseString;
 
 export default {
   emits: [ 'updateModel' ],
   name: 'IntroPage',
   data: () => ({
+
+    doidialog: false,
+    xmldialog: false,
+    filedialog: false,
+    wmsdialog: false,
     'doi': "",
     'metadata': "",
     'data': "",
@@ -147,6 +197,27 @@ export default {
           } catch (e) {console.log(e)}
         }
       });
+    },
+    saveFile(){
+      let self = this;
+      self.$emit('saveFile');
+    },
+    reset(){
+      let self = this;
+      self.$emit('updateModel',{});
+    },
+    MCFOpen(){
+      let self = this;
+      var model = this.loadMCF(this.data)
+      self.$emit('updateModel', model);
+      this.filedialog = false;
+    },
+    loadMCF(yml) {
+      var model = parse(yml);
+      console.log(model)
+      //todo: verify if this is valid mcf, you could merge the json with a default json
+      //if (this.data.mcf && this.data.mcf.version && this.data.mcf.version == "1.0"){}
+      return model;
     },
     getMetadata(){
       let self = this;
@@ -201,7 +272,7 @@ export default {
           }).catch(function(e){alert('Failed to retrieve DOI: ' + doi + '; ' + e)}) 
         }
     },
-  getLayer(){
+    getLayer(){
       let layerName = "";
       let self = this;
       let mdl = {identification:{},distribution:{},contact:{}}
