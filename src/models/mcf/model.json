@@ -75,11 +75,7 @@
             },
             "required": [
                 "identifier",
-                "language",
-                "charset",
-                "hierarchylevel",
-                "datestamp",
-                "dataseturi"
+                "hierarchylevel"
             ]
         },
         "spatial": {
@@ -110,28 +106,12 @@
                         "surface"
                     ]
                 }
-            },
-            "required": [
-                "datatype",
-                "geomtype"
-            ]
+            }
         },
         "identification": {
             "type": "object",
             "title": "Identification",
             "properties": {
-                "doi": {
-                    "type": "string",
-                    "description": "Digital Object Identifier (DOI)"
-                },
-                "language": {
-                    "type": "string",
-                    "description": "language(s) used within the dataset. If the dataset is made of numerical values, the dataset language can\nbe set to `missing`, `withheld`, `inapplicable`, `unknown` or `template`"
-                },
-                "charset": {
-                    "type": "string",
-                    "description": "full name of the character coding standard used for the dataset"
-                },
                 "title": {
                     "type": "string",
                     "description": "name by which the cited resource is known"
@@ -140,25 +120,54 @@
                     "type": "string",
                     "description": "brief narrative summary of the content of the resource(s)"
                 },
-                "fees": {
-                    "type": "string",
-                    "description": "fees and terms for retreiving the resource. Include monetary units (as specified in ISO 4217). If there\nare no fees, use the term 'None'"
-                },
-                "accessconstraints": {
-                    "type": "string",
-                    "description": "access constraints applied to assure the protection of privacy or intellectual property, and any special\nrestrictions or limitations on obtaining the resource or metadata. If there are no accessconstraints,\nuse the term 'otherRestrictions'",
-                    "items": {
-                        "type": "string",
-                        "enum": [
-                            "patent",
-                            "otherRestrictions",
-                            "copyright",
-                            "trademark",
-                            "patentPending",
-                            "restricted",
-                            "license",
-                            "intellectualPropertyRights"
-                        ]
+                "keywords": {
+                    "type": "object",
+                    "patternProperties": {
+                        "^.*": {
+                            "type": "object",
+                            "description": "The key name indicates the type of keywords (either schema specific\nof user defined).  The values are the keywords, type, and codelists.",
+                            "properties": {
+                                "keywords": {
+                                    "type": "array",
+                                    "items": {
+                                        "type": "string"
+                                    },
+                                    "description": "category keywords"
+                                },
+                                "keywords_type": {
+                                    "type": "string",
+                                    "description": "subject matter used to group similar keywords",
+                                    "enum": [
+                                        "discipline",
+                                        "place",
+                                        "stratum",
+                                        "temporal",
+                                        "theme"
+                                    ]
+                                },
+                                "keywords_codelist": {
+                                    "type": "string",
+                                    "description": "specific code list URL (for advanced use cases, else the default\nis as per the given specified schema)"
+                                },
+                                "vocabulary": {
+                                    "type": "object",
+                                    "properties": {
+                                        "name": {
+
+                                            "description": "name of the source of keywords"
+                                        },
+                                        "url": {
+                                            "type": "string",
+                                            "format": "uri",
+                                            "description": "URL of source of keywords"
+                                        }
+                                    },
+                                    "required": [
+                                        "name"
+                                    ]
+                                }
+                            }
+                        }
                     }
                 },
                 "topiccategory": {
@@ -189,16 +198,40 @@
                         ]
                     }
                 },
+                "fees": {
+                    "type": "string",
+                    "description": "fees and terms for retreiving the resource. Include monetary units (as specified in ISO 4217). If there\nare no fees, use the term 'None'"
+                },
+                "accessconstraints": {
+                    "type": "string",
+                    "description": "access constraints applied to assure the protection of privacy or intellectual property, and any special\nrestrictions or limitations on obtaining the resource or metadata. If there are no accessconstraints,\nuse the term 'otherRestrictions'",
+                    "items": {
+                        "type": "string",
+                        "enum": [
+                            "patent",
+                            "otherRestrictions",
+                            "copyright",
+                            "trademark",
+                            "patentPending",
+                            "restricted",
+                            "license",
+                            "intellectualPropertyRights"
+                        ]
+                    }
+                },
                 "rights": {
                     "type": "string",
                     "description": "name by which the cited resource is known"
                 },
-                "url": {
+                "language": {
                     "type": "string",
-                    "description": "URL of the dataset to which the metadata applies"
+                    "description": "language(s) used within the dataset. If the dataset is made of numerical values, the dataset language can\nbe set to `missing`, `withheld`, `inapplicable`, `unknown` or `template`"
+                },
+                "charset": {
+                    "type": "string",
+                    "description": "full name of the character coding standard used for the dataset"
                 },
                 "status": {
-
                     "description": "the status of the resource(s)",
                     "items": {
                         "type": "string",
@@ -314,73 +347,12 @@
                     "required": [
                         "spatial"
                     ]
-                },
-                "keywords": {
-                    "type": "object",
-                    "patternProperties": {
-                        "^.*": {
-                            "type": "object",
-                            "description": "The key name indicates the type of keywords (either schema specific\nof user defined).  The values are the keywords, type, and codelists.",
-                            "properties": {
-                                "keywords": {
-                                    "type": "array",
-                                    "items": {
-                                        "type": "string"
-                                    },
-                                    "description": "category keywords"
-                                },
-                                "keywords_type": {
-                                    "type": "string",
-                                    "description": "subject matter used to group similar keywords",
-                                    "enum": [
-                                        "discipline",
-                                        "place",
-                                        "stratum",
-                                        "temporal",
-                                        "theme"
-                                    ]
-                                },
-                                "keywords_codelist": {
-                                    "type": "string",
-                                    "description": "specific code list URL (for advanced use cases, else the default\nis as per the given specified schema)"
-                                },
-                                "vocabulary": {
-                                    "type": "object",
-                                    "properties": {
-                                        "name": {
-
-                                            "description": "name of the source of keywords"
-                                        },
-                                        "url": {
-                                            "type": "string",
-                                            "format": "uri",
-                                            "description": "URL of source of keywords"
-                                        }
-                                    },
-                                    "required": [
-                                        "name"
-                                    ]
-                                }
-                            }
-                        }
-                    }
                 }
             },
             "required": [
-                "language",
-                "charset",
                 "title",
                 "abstract",
-                "topiccategory",
-                "fees",
-                "accessconstraints",
-                "rights",
-                "url",
-                "status",
-                "maintenancefrequency",
-                "dates",
-                "extents",
-                "keywords"
+                "topiccategory"
             ]
         },
         "content_info": {
@@ -546,22 +518,11 @@
                             "description": "time period (including time zone) when individuals can contact the organization or individual"
                         },
                         "contactinstructions": {
-
                             "description": "supplementalinstructions on how or when to contact the individual or organization"
                         }
                     },
                     "required": [
                         "organization",
-                        "url",
-                        "individualname",
-                        "positionname",
-                        "phone",
-                        "fax",
-                        "address",
-                        "city",
-                        "administrativearea",
-                        "postalcode",
-                        "country",
                         "email"
                     ]
                 }
@@ -691,10 +652,8 @@
     "required": [
         "mcf",
         "metadata",
-        "spatial",
         "identification",
-        "contact",
-        "distribution"
+        "contact"
     ],
     "definitions": {
         "any_type": {
