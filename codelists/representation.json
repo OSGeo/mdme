@@ -1,0 +1,18 @@
+{
+    "count": "19",
+    "results": [
+    { "id": "documentDigital", "title": "document Digital" },
+    { "id": "documentHardcopy","title": "document Hardcopy" },
+    { "id": "imageDigital", "title": "imageDigital" },
+    { "id": "imageHardcopy","title": "imageHardcopy" },
+    { "id":     "mapDigital","title": "mapDigital" },
+    { "id":     "mapHardcopy","title": "mapHardcopy" },
+    { "id":     "modelDigital","title": "modelDigital" },
+    { "id":     "modelHardcopy","title": "modelHardcopy" },
+    { "id":     "profileDigital","title": "profileDigital" },
+    { "id":     "profileHardcopy","title": "profileHardcopy" },
+    { "id":     "tableDigital","title": "tableDigital" },
+    { "id":     "tableHardcopy","title": "tableHardcopy" },
+    { "id":     "videoDigital","title": "videoDigital" },
+    { "id": "videoHardcopy","title": "videoHardcopy" }
+]}

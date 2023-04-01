@@ -1,0 +1,117 @@
+{
+    "count": "28",
+    "results": [
+        {
+            "id": "http://www.iana.org/assignments/media-types/application/atom+xml",
+            "title": "application/atom+xml"
+        },
+        {
+            "id": "http://www.iana.org/assignments/media-types/application/geo+json",
+            "title": "application/geo+json"
+        },
+        {
+            "id": "http://www.iana.org/assignments/media-types/application/geopackage+sqlite3",
+            "title": "application/geopackage+sqlite3"
+        },
+        {
+            "id": "http://www.iana.org/assignments/media-types/application/gml+xml",
+            "title": "application/gml+xml"
+        },
+        {
+            "id": "http://www.iana.org/assignments/media-types/application/vnd.google-earth.kml+xml",
+            "title": "application/vnd.google-earth.kml+xml"
+        },
+        {
+            "id": "http://www.iana.org/assignments/media-types/application/vnd.google-earth.kmz",
+            "title": "application/vnd.google-earth.kmz"
+        },
+        {
+            "id": "http://www.iana.org/assignments/media-types/application/vnd.las",
+            "title": "application/vnd.las"
+        },
+        {
+            "id": "http://www.iana.org/assignments/media-types/application/vnd.shp",
+            "title": "application/vnd.shp"
+        },
+        {
+            "id": "http://www.iana.org/assignments/media-types/application/vnd.sqlite3",
+            "title": "application/vnd.sqlite3"
+        },
+        {
+            "id": "http://www.iana.org/assignments/media-types/application/x-ascii-grid",
+            "title": "application/x-ascii-grid"
+        },
+        {
+            "id": "http://www.iana.org/assignments/media-types/application/x-ecw",
+            "title": "application/x-ecw"
+        },
+        {
+            "id": "http://www.iana.org/assignments/media-types/application/x-filegdb",
+            "title": "application/x-filegdb"
+        },
+        {
+            "id": "http://www.iana.org/assignments/media-types/application/x-gmz",
+            "title": "application/x-gmz"
+        },
+        {
+            "id": "http://www.iana.org/assignments/media-types/application/x-laz",
+            "title": "application/x-laz"
+        },
+        {
+            "id": "http://www.iana.org/assignments/media-types/application/x-oracledump",
+            "title": "application/x-oracledump"
+        },
+        {
+            "id": "http://www.iana.org/assignments/media-types/application/x-tab",
+            "title": "application/x-tab"
+        },
+        {
+            "id": "http://www.iana.org/assignments/media-types/application/x-tab-raster",
+            "title": "application/x-tab-raster"
+        },
+        {
+            "id": "http://www.iana.org/assignments/media-types/application/x-worldfile",
+            "title": "application/x-worldfile"
+        },
+        {
+            "id": "http://www.iana.org/assignments/media-types/image/jp2",
+            "title": "image/jp2"
+        },
+        {
+            "id": "http://www.iana.org/assignments/media-types/image/tiff",
+            "title": "image/tiff"
+        },
+        {
+            "id": "http://www.iana.org/assignments/media-types/text/csv",
+            "title": "text/csv"
+        },
+        {
+            "id": "https://tools.ietf.org/html/rfc4287",
+            "title": "ATOM Syndication Format"
+        },
+        {
+            "id": "http://www.opengis.net/def/serviceType/ogc/csw",
+            "title": "OGC Catalogue Service for the Web"
+        },
+        {
+            "id": "http://www.opengis.net/def/serviceType/ogc/sos",
+            "title": "OGC Sensor Observation Service"
+        },
+        {
+            "id": "http://www.opengis.net/def/serviceType/ogc/wcs",
+            "title": "OGC Web Coverage Service"
+        },
+        {
+            "id": "http://www.opengis.net/def/serviceType/ogc/wfs",
+            "title": "OGC Web Feature Service"
+        },
+        {
+            "id": "http://www.opengis.net/def/serviceType/ogc/wms",
+            "title": "OGC Web Map Service"
+        },
+        {
+            "id": "http://www.opengis.net/def/serviceType/ogc/wmts",
+            "title": "OGC Web Map Tile Service"
+        }
+    ]
+}
