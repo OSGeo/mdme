@@ -1,14 +1,17 @@
 
 ![MDME](./src/components/img/logo.svg)
 
-Web based (node/vuejs) application to populate yml/json oriented metadata records. The editor supports multiple metadata models (and can easily be extended),  currently supported are: 
+A web based (node/vuejs) application to populate yml/json oriented [metadata records](https://en.wikipedia.org/wiki/Geospatial_metadata). The editor supports multiple metadata models (and can easily be extended),  currently supported are: 
 - [mcf](https://geopython.github.io/pygeometa/reference/mcf/) 
 - [ogcapi-records](https://ogcapi.ogc.org/records/) 
 - [datapackage](https://specs.frictionlessdata.io/data-package/)
 
 The app is currently in BETA, improvement suggestions very welcomed.
 
-### Capabilities: 
+A default installation of the app is available via [github.io](https://osgeo.github.io/mdme).
+
+## Capabilities 
+
 - Open local metadata (mcf)
 - Import metadata from:
   - DOI (extract DOI metadata as bibtex)
@@ -17,11 +20,9 @@ The app is currently in BETA, improvement suggestions very welcomed.
 - edit metadata
 - save metadata 
 
-Metadata is exported in the [Metadata Control File](https://geopython.github.io/pygeometa/reference/mcf/) (mcf) format. The format is encoded as yaml, which is an optimal format for content versioning in a git repository. When alternate formats are needed (iso19115, dcat, STAC), you can transform mcf to these using [pygeometa](https://geopython.github.io/pygeometa/) or [pyGeoDataCrawler](https://github.com/pvgenuchten/pyGeoDataCrawler).
-
 ## About MCF
 
-
+Metadata is exported in the [Metadata Control File](https://geopython.github.io/pygeometa/reference/mcf/) (mcf) format. The format is encoded as yaml, which is an optimal format for content versioning in a git repository. When alternate formats are needed (iso19115, dcat, STAC), you can transform mcf to these using [pygeometa](https://geopython.github.io/pygeometa/) or [pyGeoDataCrawler](https://github.com/pvgenuchten/pyGeoDataCrawler).
 
 ## Installation
 
