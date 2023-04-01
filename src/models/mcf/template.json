@@ -4,22 +4,26 @@
     },
     "metadata": {
         "dataseturi": "",
-        "hierarchylevel": "",
-        "identifier": ""
+        "hierarchylevel": "dataset",
+        "identifier": "",
+        "language": "en",
+        "language_alternate": "",
+        "charset": "",
+        "parentidentifier": "",
+        "datestamp": ""  
+    },
+    "spatial": {
+        "datatype": "",
+        "geomtype": "",
+        "scale": "",
+        "resolution": "",
+        "crs": ""
     },
     "distribution": {
-        "first": [{
-            "name": "",
-            "href": "",
-            "protocol": ""
-        }]
+        "first": []
     },
     "contact": {
-        "pointOfContact": [{
-            "organisation": "",
-            "email": "",
-            "role": ""
-        }]
+        "pointOfContact": []
     },
     "identification": {
         "id": "",
@@ -31,11 +35,9 @@
         "keywords": [],
         "language": "en",
         "status": "completed",
-        "maintenancefrequency": "irregular",
-        "usageconstraints": "CC-BY",
-        "accessconstraints": "0",
-        "topic": "geoscientificInformation",
-        "scale": "",
-        "crs": ""
+        "maintenancefrequency": "",
+        "usageconstraints": "",
+        "accessconstraints": "",
+        "topic": ""
     }
 }
