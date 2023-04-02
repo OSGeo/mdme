@@ -20,6 +20,8 @@ A default installation of the app is available via [github.io](https://osgeo.git
 - edit metadata
 - save metadata 
 
+Note that the application runs client side only. No content is send to a server. Although the client can easily be extended to store the output in a git repository or a catalogue system, like [pygeoapi](https://pygeoapi.io), [pycsw](https://pycsw.org), [geonetwork](https://geonetwork-opensource.org) or [ckan](https://ckan.org).
+
 ## About MCF
 
 Metadata is exported in the [Metadata Control File](https://geopython.github.io/pygeometa/reference/mcf/) (mcf) format. The format is encoded as yaml, which is an optimal format for content versioning in a git repository. When alternate formats are needed (iso19115, dcat, STAC), you can transform mcf to these using [pygeometa](https://geopython.github.io/pygeometa/) or [pyGeoDataCrawler](https://github.com/pvgenuchten/pyGeoDataCrawler).
@@ -42,9 +44,11 @@ Visit [localhost:8000](http://localhost:8080).
 
 Configure `vocab` in app.vue on which schema to use, [mcf](https://geopython.github.io/pygeometa/reference/mcf/), [ogcapi-records](https://ogcapi.ogc.org/records/) or [datapackage](https://specs.frictionlessdata.io/data-package/).
 
-Models are defined in `/models/{model}/model.json`. 
+Models are defined in `/models/{model}/model.json`. Very welcome to adjust the existing schema's or add a new one.
 
-The library [vjsf](https://koumoul-dev.github.io/vuetify-jsonschema-form/latest/examples#basic) used a model to render a form. Some special fields ('x-display: 'hidden') are added to the model to enrich vizualisation. 
+## Vuetify JSON Schema Form
+
+The library [vjsf](https://koumoul-dev.github.io/vuetify-jsonschema-form/latest/examples#basic) uses a json-schema definition to render a form. Some special fields ('x-display: 'hidden') are added to the schema file to enrich vizualisation. 
 
 ## License 
 
