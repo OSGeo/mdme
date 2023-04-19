@@ -14,17 +14,29 @@
     },
     "spatial": {
         "datatype": "",
-        "geomtype": "",
-        "scale": "",
-        "resolution": "",
-        "crs": ""
+        "geomtype": ""
     },
-    "distribution": {
-        "first": []
-    },
-    "contact": {
-        "pointOfContact": []
-    },
+    "distribution": [
+        {
+            "url": "",
+            "type": "",
+            "name": "",
+            "description": "",
+            "function": ""
+        }
+        
+    ],
+    "contact": [
+        {
+            "organization": "",
+            "url": "",
+            "individualname": "",
+            "positionname": "",
+            "country": "",
+            "email": "",
+            "role": ""
+        }
+    ],
     "identification": {
         "id": "",
         "title": "",

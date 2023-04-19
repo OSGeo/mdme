@@ -184,7 +184,7 @@ export default {
     FileReader
   },
   methods : {
-    parseMetadata (str) {
+    parseIsoMetadata (str) {
       let self = this;
       parseString(str, (err, result) => {
         if(err) {
@@ -215,7 +215,23 @@ export default {
     },
     loadMCF(yml) {
       var model = parse(yml);
-      console.log(model)
+      //convert contacts and distributions to arrays
+      var cnt = [];
+      if (model['contact']){
+        Object.keys(model['contact']).forEach(function(k){
+          var newCnt = model['contact'][k];
+          newCnt['role'] = k;
+          cnt.push(newCnt)
+        });
+      }
+      model['contact'] = {'contacts': cnt};
+      var dst = [];
+      if (model['distribution']){
+        Object.keys(model['distribution']).forEach(function(k){
+          dst.push(model['distribution'][k])
+        });
+      }
+      model['distribution'] = {'distributions': dst};
       //todo: verify if this is valid mcf, you could merge the json with a default json
       //if (this.data.mcf && this.data.mcf.version && this.data.mcf.version == "1.0"){}
       return model;
@@ -223,7 +239,7 @@ export default {
     getMetadata(){
       let self = this;
       this.axios.get(this.record, {headers: {'Accept': 'application/xml'}}).then(function(response){
-             self.parseMetadata(response.data);
+             self.parseIsoMetadata(response.data);
             })
     },
     fetchDOI() {

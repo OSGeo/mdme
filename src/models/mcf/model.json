@@ -20,7 +20,6 @@
         "metadata": {
             "type": "object",
             "title": "Metadata",
-            "description": "unique identifier for this metadata file",
             "properties": {
                 "identifier": {
                     "type": "string",
@@ -80,7 +79,7 @@
         },
         "spatial": {
             "type": "object",
-            "title": "Spatial",
+            "title": "Spatial information",
             "properties": {
                 "datatype": {
                     "type": "string",
@@ -458,123 +457,136 @@
             ]
         },
         "contact": {
-            "title": "Contacts",
-            "patternProperties": {
-                "^.*": {
-                    "type": "object",
-                    "description": "MCFs can have 1..n contact sections as required using nesting\nA contact with a key called `pointOfContact` is minimally required.",
-                    "properties": {
-                        "organization": {
-
-                            "description": "name of the responsible organization"
+            "title": "Contact information",
+            "type": "object",
+            "properties": {
+                "contacts": {
+                    "title": "Contacts",
+                    "type": "array",
+                    "items": {
+                        "type": "object",
+                        "properties": {
+                            "organization": {
+                                "type": "string",
+                                "description": "name of the responsible organization"
+                            },
+                            "url": {
+                                "type": "string",
+                                "format": "uri",
+                                "description": "on-line information that can be used to contact the individual or organization"
+                            },
+                            "individualname": {
+                                "type": "string",
+                                "description": "name of the responsible person-surname"
+                            },
+                            "positionname": {
+                                "type": "string",
+                                "description": "role or position of the responsible person"
+                            },
+                            "phone": {
+                                "type": "string",
+                                "description": "telephone number by which individuals can speak to the responsible organization or individual"
+                            },
+                            "fax": {
+                                "type": "string",
+                                "description": "telephone number of a facsimile machine for the responsible organization or individual"
+                            },
+                            "address": {
+                                "type": "string",
+                                "description": "address line for the location (as described in ISO 11180)"
+                            },
+                            "city": {
+                                "type": "string",
+                                "description": "city of the location"
+                            },
+                            "administrativearea": {
+                                "type": "string",
+                                "description": "city of the location"
+                            },
+                            "postalcode": {
+                                "type": "string",
+                                "description": "ZIP or other postal code"
+                            },
+                            "country": {
+                                "type": "string",
+                                "description": "country of the physical address"
+                            },
+                            "email": {
+                                "type": "string",
+                                "description": "address of the electronic mailbox of the responsible organization or individual"
+                            },
+                            "hoursofservice": {
+                                "type": "string",
+                                "description": "time period (including time zone) when individuals can contact the organization or individual"
+                            },
+                            "contactinstructions": {
+                                "type": "string",
+                                "description": "supplementalinstructions on how or when to contact the individual or organization"
+                            }
                         },
-                        "url": {
-                            "type": "string",
-                            "format": "uri",
-                            "description": "on-line information that can be used to contact the individual or organization"
-                        },
-                        "individualname": {
-
-                            "description": "name of the responsible person-surname"
-                        },
-                        "positionname": {
-
-                            "description": "role or position of the responsible person"
-                        },
-                        "phone": {
-                            "type": "string",
-                            "description": "telephone number by which individuals can speak to the responsible organization or individual"
-                        },
-                        "fax": {
-                            "type": "string",
-                            "description": "telephone number of a facsimile machine for the responsible organization or individual"
-                        },
-                        "address": {
-
-                            "description": "address line for the location (as described in ISO 11180)"
-                        },
-                        "city": {
-
-                            "description": "city of the location"
-                        },
-                        "administrativearea": {
-
-                            "description": "city of the location"
-                        },
-                        "postalcode": {
-                            "type": "string",
-                            "description": "ZIP or other postal code"
-                        },
-                        "country": {
-
-                            "description": "country of the physical address"
-                        },
-                        "email": {
-                            "type": "string",
-                            "description": "address of the electronic mailbox of the responsible organization or individual"
-                        },
-                        "hoursofservice": {
-
-                            "description": "time period (including time zone) when individuals can contact the organization or individual"
-                        },
-                        "contactinstructions": {
-                            "description": "supplementalinstructions on how or when to contact the individual or organization"
-                        }
-                    },
-                    "required": [
-                        "organization",
-                        "email"
-                    ]
+                        "required": [
+                            "organization",
+                            "email"
+                        ]
+                    }
                 }
             }
         },
         "distribution": {
-            "title": "Distributions",
-            "patternProperties": {
-                "^.*": {
-                    "type": "object",
-                    "description": "MCFs can have 1..n distribution sections as required using nesting.",
-                    "properties": {
-                        "url": {
-                            "type": "string",
-                            "format": "uri",
-                            "description": "location (address) for on-line access using a Uniform Resource Locator address or similar addressing scheme such as http://www.isotc211.org/"
+            "title": "Distribution information",
+            "type": "object",
+            "description": "core mcf metadata",
+            "properties": {
+                "distributions": { 
+                    "title": "Distributions",
+                    "type": "array",
+                    "items": {
+                        "type": "object",
+                        "properties": {
+                            "url": {
+                                "type": "string",
+                                "format": "uri",
+                                "description": "location (address) for on-line access using a Uniform Resource Locator address or similar addressing scheme such as http://www.isotc211.org/"
+                            },
+                            "type": {
+                                "type": "string",
+                                "enum": [
+                                    "www",
+                                    "download",
+                                    "OGC:WMS",
+                                    "OGC:WFS",
+                                    "OGC:WCS"
+                                ],
+                                "description": "connection protocol to be used. Must be one of the `identifier` values from https://github.com/OSGeo/Cat-Interop/blob/master/LinkPropertyLookupTable.csv"
+                            },
+                            "name": {
+                                "type": "string",
+                                "description": "name of the online resource"
+                            },
+                            "description": {
+                                "type": "string",
+                                "description": "detailed text description of what the online resources is/does"
+                            },
+                            "function": {
+                                "type": "string",
+                                "description": "code for function performed by the online resource",
+                                "enum": [
+                                    "download",
+                                    "information",
+                                    "offlineAccess",
+                                    "order",
+                                    "search"
+                                ]
+                            },
+                            "format": {
+                                "type": "string",
+                                "description": "Format of the distribution"
+                            }
                         },
-                        "type": {
-                            "type": "string",
-                            "description": "connection protocol to be used. Must be one of the `identifier` values from https://github.com/OSGeo/Cat-Interop/blob/master/LinkPropertyLookupTable.csv"
-                        },
-                        "name": {
-
-                            "description": "name of the online resource"
-                        },
-                        "description": {
-
-                            "description": "detailed text description of what the online resources is/does"
-                        },
-                        "function": {
-                            "type": "string",
-                            "description": "code for function performed by the online resource",
-                            "enum": [
-                                "download",
-                                "information",
-                                "offlineAccess",
-                                "order",
-                                "search"
-                            ]
-                        },
-                        "format": {
-
-                            "description": "Format of the distribution method"
-                        }
-                    },
-                    "required": [
-                        "url",
-                        "type",
-                        "name",
-                        "description",
-                        "function"
-                    ]
+                        "required": [
+                            "url"
+                        ]
+                    }
                 }
             }
         },
