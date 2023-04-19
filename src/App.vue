@@ -5,8 +5,6 @@
     <v-container>
         <v-card flat>
           <v-card-text>
-           <p>&nbsp;</p>
-              <h1>Dataset annotation</h1>
               <v-form v-model="valid">
                 <v-jsf v-model="model" :schema="schema" />
               </v-form>
@@ -53,17 +51,32 @@ export default {
       //copy key-values from object 2 levels deep
       let self = this;
       //self.model = mdl;
-      
-      ["metadata","identification","distribution","contact","citation","metadata"].forEach(function(m){
+      ["metadata","spatial","identification","distribution","contact","acquisition","dataquality","content_info"].forEach(function(m){
         if (mdl[m]){
           if (!self.model[m]) self.model[m] = {};
-          console.log(m,mdl[m]);
           Object.keys(mdl[m]).forEach(function(k){self.model[m][k] = mdl[m][k]});
         }
       })
     },
     saveData() {
-      const data = stringify(this.model)
+      let toExp = Object.assign({}, this.model);
+      //convert contact/dist to objects
+      var cnt = {}
+      if (toExp['contact'] && toExp['contact']['contacts']){
+        toExp['contact']['contacts'].forEach(function(k){
+          cnt[k['role']] = k;
+        })
+      }
+      toExp['contact'] = cnt;
+      var dst = {}
+      if (toExp['distribution'] && toExp['distribution']['distributions']){
+        var i=0;
+        toExp['distribution']['distributions'].forEach(function(k){
+          dst['dst'+(i++)] = k;
+        })
+      }
+      toExp['distribution'] = dst;
+      const data = stringify(toExp)
       const blob = new Blob([data], {type: 'text/plain'})
       const e = document.createEvent('MouseEvents'),
       a = document.createElement('a');
