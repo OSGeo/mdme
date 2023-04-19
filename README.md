@@ -50,6 +50,8 @@ Models are defined in `/models/{model}/model.json`. Very welcome to adjust the e
 
 The library [vjsf](https://koumoul-dev.github.io/vuetify-jsonschema-form/latest/examples#basic) uses a json-schema definition to render a form. Some special fields ('x-display: 'hidden') are added to the schema file to enrich vizualisation. 
 
+MCF introduces contacts and distributions as key-value pairs. This pattern is not supported by vsjf. For this reason contacts and distributions are converted to array at loading time and back to object when saving.
+
 ## License 
 
 MIT
