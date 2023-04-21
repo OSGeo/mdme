@@ -5,7 +5,6 @@
         "mcf": {
             "type": "object",
             "x-display": "hidden",
-            "description": "core mcf metadata",
             "properties": {
                 "version": {
                     "type": "number",
@@ -362,9 +361,14 @@
                     "type": "string",
                     "description": "Content type",
                     "enum": [
-                        "coverage",
+                        "grid",
                         "image",
-                        "feature_catalogue"
+                        "coverage",
+                        "texttable",
+                        "vector",
+                        "tin",
+                        "steromodel",
+                        "video"
                     ]
                 },
                 "cloud_cover": {
@@ -551,11 +555,30 @@
                             "type": {
                                 "type": "string",
                                 "enum": [
-                                    "www",
-                                    "download",
-                                    "OGC:WMS",
+                                    "FILE:GEO",
+                                    "FILE:RASTER",
+                                    "IETF:GeoJSON",
+                                    "OGC:CSW",
+                                    "OGC:GPKG",
+                                    "OGC:OPS",
+                                    "OGC:SOS",
+                                    "OGC:WCS",
                                     "OGC:WFS",
-                                    "OGC:WCS"
+                                    "OGC:WMS",
+                                    "OGC:WMTS",
+                                    "OGC:WPS",
+                                    "OGCCov",
+                                    "OGCDGGS",
+                                    "OGCEDR",
+                                    "OGCFeat",
+                                    "OGCMaps",
+                                    "OGCProc",
+                                    "OGCRec",
+                                    "OGCRout",
+                                    "OGCTile",
+                                    "OSGEO:TMS",
+                                    "OSM:XYZ",
+                                    "WWW:LINK"
                                 ],
                                 "description": "connection protocol to be used. Must be one of the `identifier` values from https://github.com/OSGeo/Cat-Interop/blob/master/LinkPropertyLookupTable.csv"
                             },
