@@ -28,6 +28,9 @@
             <v-list-item @click="wmsdialog = true">
               <v-list-item-title>Import from WMS</v-list-item-title>
             </v-list-item>
+            <v-list-item @click="exportdialog = true">
+              <v-list-item-title>Export</v-list-item-title>
+            </v-list-item>
           </v-list>
         </v-menu>
       </v-btn>
@@ -146,7 +149,27 @@
       </v-card>
     </v-dialog>
 
-    
+    <v-dialog v-model="exportdialog" width="auto">
+      <v-card>
+        <v-card-title>Export record</v-card-title>
+        <v-card-text>    
+          <p>Select the schema to use for the exported record</p>
+          <v-select
+                    v-model="exportschema"
+                    :items="['iso19139','oarec-record','stac-item','dcat']"
+                    :menu-props="{ maxHeight: '400' }"
+                    label="Select"
+                  ></v-select>   
+        </v-card-text>
+        <v-card-actions>
+          <v-btn @click="exportFile"
+                    elevation="2"
+                    small color="primary"
+                  > Export </v-btn>
+          <v-btn small @click="exportdialog = false">Close Dialog</v-btn>
+        </v-card-actions>
+      </v-card>
+    </v-dialog>
  
 </div>
 </template>
@@ -164,12 +187,13 @@ export default {
   emits: [ 'updateModel' ],
   name: 'IntroPage',
   data: () => ({
-
-    doidialog: false,
-    xmldialog: false,
-    filedialog: false,
-    wmsdialog: false,
+    'doidialog': false,
+    'xmldialog': false,
+    'filedialog': false,
+    'wmsdialog': false,
+    'exportdialog': false,
     'doi': "",
+    'exportschema': "",
     'metadata': "",
     'data': "",
     'service': "",
@@ -202,6 +226,10 @@ export default {
     saveFile(){
       let self = this;
       self.$emit('saveFile');
+    },
+    exportFile(){
+      let self = this;
+      self.$emit('saveFile',self.exportschema);  
     },
     reset(){
       let self = this;
