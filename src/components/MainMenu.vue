@@ -85,10 +85,13 @@
 
     <v-dialog v-model="xmldialog" width="auto">
       <v-card>
-        <v-card-title>Import xml metadata</v-card-title>
+        <v-card-title>Import XML metadata</v-card-title>
         <v-card-text> 
         
-        If this dataset is registered in a catalog, add a link to the record (as iso19139).
+        If this dataset is registered in a catalogue, 
+        add a link to the record (as iso19139). MDME uses a metadata transformation 
+        service provided by pygeoapi.io for the conversion.
+
                 <v-text-field
                   v-model="record"
                   label="Metadata record"
@@ -102,7 +105,7 @@
                   Or upload a iso19139 metadata document. Typically a metadata file is 
                   stored along side a tif or shapefile as {filename}.shp.xml.
                 </p>
-                <file-reader @load="parseMetadata($event)"></file-reader>
+                <file-reader @load="parseIsoMetadata($event)"></file-reader>
         </v-card-text>
         <v-card-actions>
           <v-btn @click="fetchDOI"
@@ -153,7 +156,9 @@
       <v-card>
         <v-card-title>Export record</v-card-title>
         <v-card-text>    
-          <p>Select the schema to use for the exported record</p>
+          <p>MDME uses a metadata transformation 
+        service provided by pygeoapi.io for the conversion.
+        Select the schema to use for the exported record</p>
           <v-select
                     v-model="exportschema"
                     :items="['iso19139','oarec-record','stac-item','dcat']"
@@ -210,18 +215,24 @@ export default {
   methods : {
     parseIsoMetadata (str) {
       let self = this;
-      parseString(str, (err, result) => {
-        if(err) {
-          console.log(err)
-        } else {
-          try {
-            let uuid = result['gmd:MD_Metadata']['gmd:fileIdentifier'][0]['gco:CharacterString'][0];
-            let model = {identification:{id: uuid}};
-            self.$emit('updateModel',model);
-            alert('Record ' +uuid+ ' imported');
-          } catch (e) {console.log(e)}
-        }
-      });
+      //send xml to pygeoapi
+      this.axios.post("https://demo.pygeoapi.io/master/processes/pygeometa-metadata-import/execution", {
+          "inputs": {
+            "metadata": str,                        
+            "schema": "iso19139"
+          }
+        },{
+          headers: {'Accept': 'application/json'}
+        }).then(function(response){
+          //todo: build some check to evaluate if the content is of expected type
+          if (response.data.value){
+            self.$emit('updateModel',response.data.value);
+          } else {
+            alert("Import failed");
+          }
+        }).catch(function (error) {
+          alert(error);
+        })
     },
     saveFile(){
       let self = this;
