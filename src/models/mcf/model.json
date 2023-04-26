@@ -331,7 +331,6 @@
                     "type": "string",
                     "description": "method used to represent geographic information in the dataset",
                     "enum": [
-                        "",
                         "vector",
                         "grid",
                         "textTable",
@@ -344,7 +343,6 @@
                     "type": "string",
                     "description": "name of point or vector objects used to locate zero-, one-, two-, or threedimensional spatial locations in the dataset",
                     "enum": [
-                        "",
                         "complex",
                         "composite",
                         "curve",
@@ -363,7 +361,6 @@
                     "type": "string",
                     "description": "Content type",
                     "enum": [
-                        "",
                         "grid",
                         "image",
                         "coverage",
@@ -457,11 +454,7 @@
                         ]
                     }
                 }
-            },
-            "required": [
-                "type",
-                "dimensions"
-            ]
+            }
         },
         "contact": {
             "title": "Contact information",

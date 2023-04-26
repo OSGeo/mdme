@@ -13,6 +13,14 @@
       <strong>We're sorry but <%= htmlWebpackPlugin.options.title %> doesn't work properly without JavaScript enabled. Please enable it to continue.</strong>
     </noscript>
     <div id="app"></div>
+    <style>
+      .v-btn--fab.v-size--small {
+        /* fix #15 */
+        width:30px;height:30px;
+        margin-top: 15px;
+        margin-bottom: 15px;
+      }
+      </style>
     <!-- built files will be auto injected -->
   </body>
 </html>
