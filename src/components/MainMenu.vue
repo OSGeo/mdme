@@ -90,7 +90,7 @@
         
         If this dataset is registered in a catalogue, 
         add a link to the record (as iso19139). MDME uses a metadata transformation 
-        service provided by pygeoapi.io for the conversion.
+        service provided by <a href="https://pygeoapi.io">pygeoapi</a> for the conversion.
 
                 <v-text-field
                   v-model="record"
@@ -157,7 +157,7 @@
         <v-card-title>Export record</v-card-title>
         <v-card-text>    
           <p>MDME uses a metadata transformation 
-        service provided by pygeoapi.io for the conversion.
+        service provided by <a href="https://pygeoapi.io">pygeoapi</a> for the conversion.
         Select the schema to use for the exported record</p>
           <v-select
                     v-model="exportschema"
