@@ -19,11 +19,8 @@
             <v-list-item @click="reset"> <!-- todo: if dirty, warn to save -->
               <v-list-item-title>New</v-list-item-title>
             </v-list-item>
-            <v-list-item @click="xmldialog = true">
-              <v-list-item-title>Import XML</v-list-item-title>
-            </v-list-item>
-            <v-list-item @click="doidialog = true">
-              <v-list-item-title>Import DOI</v-list-item-title>
+            <v-list-item @click="importdialog = true">
+              <v-list-item-title>Import</v-list-item-title>
             </v-list-item>
             <v-list-item @click="wmsdialog = true">
               <v-list-item-title>Import from WMS</v-list-item-title>
@@ -60,42 +57,27 @@
       </v-card>
     </v-dialog>
 
-  <v-dialog v-model="doidialog" width="auto">
-    <v-card>
-      <v-card-title>Import DOI metadata</v-card-title>
-      <v-card-text> 
-        If a DOI is registerd for this dataset, Bibtex metadata will be extracted for this DOI
-            
-                <v-text-field 
-                  v-model="doi"
-                  label="DOI"
-                  description=""
-                ></v-text-field>
-
-        </v-card-text>
-        <v-card-actions>
-          <v-btn @click="fetchDOI"
-                    elevation="2"
-                    small color="primary"
-                  > Fetch DOI </v-btn>
-          <v-btn small @click="doidialog = false">Close Dialog</v-btn>
-        </v-card-actions>
-      </v-card>
-    </v-dialog>
-
-    <v-dialog v-model="xmldialog" width="auto">
+    <v-dialog v-model="importdialog" width="auto">
       <v-card>
-        <v-card-title>Import XML metadata</v-card-title>
+        <v-card-title>Import metadata</v-card-title>
         <v-card-text> 
         
-        If this dataset is registered in a catalogue, 
-        add a link to the record (as iso19139). MDME uses a metadata transformation 
-        service provided by <a href="https://pygeoapi.io">pygeoapi</a> for the conversion.
+        Import metadata from a remote location
+        MDME uses a metadata transformation 
+        service provided by <a href="https://pygeoapi.io">pygeoapi</a> for 
+        the conversion.
 
                 <v-text-field
                   v-model="record"
                   label="Metadata record"
                 ></v-text-field>
+                Select the format of the record. <!-- todo: auto-detect; potential schema's: FGDC, oarec-record, stac-item  -->
+                <v-select
+                    v-model="importschema"
+                    :items="['iso19139','doi']"
+                    :menu-props="{ maxHeight: '400' }"
+                    label="Select"
+                  ></v-select>  
                 <v-btn @click="getMetadata"
                     elevation="2"
                     small
@@ -105,14 +87,14 @@
                   Or upload a iso19139 metadata document. Typically a metadata file is 
                   stored along side a tif or shapefile as {filename}.shp.xml.
                 </p>
-                <file-reader @load="parseIsoMetadata($event)"></file-reader>
+                <file-reader @load="parseMetadata($event)"></file-reader>
         </v-card-text>
         <v-card-actions>
           <v-btn @click="fetchDOI"
                     elevation="2"
                     small color="primary"
                   > Fetch DOI </v-btn>
-          <v-btn small @click="xmldialog = false">Close Dialog</v-btn>
+          <v-btn small @click="importdialog = false">Close Dialog</v-btn>
         </v-card-actions>
       </v-card>
     </v-dialog>   
@@ -192,13 +174,12 @@ export default {
   emits: [ 'updateModel' ],
   name: 'IntroPage',
   data: () => ({
-    'doidialog': false,
-    'xmldialog': false,
+    'importdialog': false,
     'filedialog': false,
     'wmsdialog': false,
     'exportdialog': false,
-    'doi': "",
     'exportschema': "",
+    'importschema': "iso19139",
     'metadata': "",
     'data': "",
     'service': "",
@@ -213,13 +194,13 @@ export default {
     FileReader
   },
   methods : {
-    parseIsoMetadata (str) {
+    parseMetadata (str,schema) {
       let self = this;
       //send xml to pygeoapi
       this.axios.post("https://demo.pygeoapi.io/master/processes/pygeometa-metadata-import/execution", {
           "inputs": {
             "metadata": str,                        
-            "schema": "iso19139"
+            "schema": schema
           }
         },{
           headers: {'Accept': 'application/json'}
@@ -227,8 +208,16 @@ export default {
           //todo: build some check to evaluate if the content is of expected type
           if (response.data.value){
             self.$emit('updateModel',response.data.value);
+            self.importdialog = false;
           } else {
-            alert("Import failed");
+            var err = 'Import failed; ';
+            if (response.data.code){ 
+              err += response.data.code;
+            }
+            if (response.data.description){ 
+              err += response.data.description;
+            }
+            alert(err);
           }
         }).catch(function (error) {
           alert(error);
@@ -277,12 +266,25 @@ export default {
     },
     getMetadata(){
       let self = this;
-      this.axios.get(this.record, {headers: {'Accept': 'application/xml'}}).then(function(response){
-             self.parseIsoMetadata(response.data);
-            })
+      switch (self.importschema) {
+        case 'doi':
+          self.fetchDOI();
+          break;
+        case 'iso19139':
+          this.axios.get(this.record, {headers: {'Accept': 'application/xml'}}).then(function(response){
+              self.parseMetadata(response.data, self.importschema);
+              })
+          break;
+        default:  
+          this.axios.get(this.record, {headers: {'Accept': 'application/json'}}).then(function(response){
+              self.parseMetadata(response.data, self.importschema);
+              })
+      }
+
+      
     },
     fetchDOI() {
-        let doi = this.doi;
+        let doi = this.record;
         if (doi.trim().indexOf('http') == 0) { 
           //normal case
           doi = doi.trim();
