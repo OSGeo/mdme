@@ -22,9 +22,11 @@ A default installation of the app is available via [github.io](https://osgeo.git
 
 Note that the application runs client side only. No content is send to a server. Although the client can easily be extended to store the output in a git repository or a catalogue system, like [pygeoapi](https://pygeoapi.io), [pycsw](https://pycsw.org), [geonetwork](https://geonetwork-opensource.org) or [ckan](https://ckan.org).
 
+An exception are the import and export metadata, which use a metadata transformation service provided by [demo.pygeoapi.io](https://demo.pygeoapi.io/master).
+
 ## About MCF
 
-Metadata is exported in the [Metadata Control File](https://geopython.github.io/pygeometa/reference/mcf/) (mcf) format. The format is encoded as yaml, which is an optimal format for content versioning in a git repository. When alternate formats are needed (iso19115, dcat, STAC), you can transform mcf to these using [pygeometa](https://geopython.github.io/pygeometa/) or [pyGeoDataCrawler](https://github.com/pvgenuchten/pyGeoDataCrawler).
+Metadata is saved in the [Metadata Control File](https://geopython.github.io/pygeometa/reference/mcf/) (mcf) format. The format is encoded as yaml, which is a readable file format and optimal for content versioning in a git repository. When alternate formats are needed (iso19115, dcat, STAC), you can export to these formats using a transformation service provided by [pygeoapi.io](https://demo.pygeoapi.io/master/processes/pygeometa-metadata-generate) based on [pygeometa](https://geopython.github.io/). 
 
 ## Installation
 

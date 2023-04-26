@@ -76,36 +76,6 @@
                 "hierarchylevel"
             ]
         },
-        "spatial": {
-            "type": "object",
-            "title": "Spatial information",
-            "properties": {
-                "datatype": {
-                    "type": "string",
-                    "description": "method used to represent geographic information in the dataset",
-                    "enum": [
-                        "vector",
-                        "grid",
-                        "textTable",
-                        "tin",
-                        "stereoModel",
-                        "video"
-                    ]
-                },
-                "geomtype": {
-                    "type": "string",
-                    "description": "name of point or vector objects used to locate zero-, one-, two-, or threedimensional spatial locations in the dataset",
-                    "enum": [
-                        "complex",
-                        "composite",
-                        "curve",
-                        "point",
-                        "solid",
-                        "surface"
-                    ]
-                }
-            }
-        },
         "identification": {
             "type": "object",
             "title": "Identification",
@@ -353,6 +323,38 @@
                 "topiccategory"
             ]
         },
+        "spatial": {
+            "type": "object",
+            "title": "Spatial information",
+            "properties": {
+                "datatype": {
+                    "type": "string",
+                    "description": "method used to represent geographic information in the dataset",
+                    "enum": [
+                        "",
+                        "vector",
+                        "grid",
+                        "textTable",
+                        "tin",
+                        "stereoModel",
+                        "video"
+                    ]
+                },
+                "geomtype": {
+                    "type": "string",
+                    "description": "name of point or vector objects used to locate zero-, one-, two-, or threedimensional spatial locations in the dataset",
+                    "enum": [
+                        "",
+                        "complex",
+                        "composite",
+                        "curve",
+                        "point",
+                        "solid",
+                        "surface"
+                    ]
+                }
+            }
+        },
         "content_info": {
             "type": "object",
             "title": "Content information",
@@ -361,6 +363,7 @@
                     "type": "string",
                     "description": "Content type",
                     "enum": [
+                        "",
                         "grid",
                         "image",
                         "coverage",
