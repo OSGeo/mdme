@@ -62,12 +62,19 @@ export default {
       //copy key-values from object 2 levels deep
       let self = this;
       //self.model = mdl;
-      ["metadata","spatial","identification","distribution","contact","acquisition","dataquality","content_info"].forEach(function(m){
+      ["metadata","spatial","identification","acquisition","dataquality","content_info"].forEach(function(m){
         if (mdl[m]){
           if (!self.model[m]) self.model[m] = {};
           Object.keys(mdl[m]).forEach(function(k){self.model[m][k] = mdl[m][k]});
         }
-      })
+      });
+      ["distribution","contact"].forEach(function(m){
+        if (mdl[m][m+'s']){
+          if (!self.model[m]) self.model[m] = {};
+          var cnt = 0;
+          mdl[m][m+'s'].forEach(function(k){self.model[m][m+'-'+(cnt++)] = k});
+        }
+      });
     },
     saveData(mode) {
       let self = this;
