@@ -169,7 +169,6 @@ export default {
     },
     getMetadata() {
       let self = this;
-      console.log(this.record);
       if (this.record != "") {
         switch (self.importschema) {
           case "doi":
@@ -221,7 +220,7 @@ export default {
         .then(function (response) {
           //todo: build some check to evaluate if the content is of expected type
           if (response.data.value) {
-            self.$emit("updateModel", response.data.value);
+            self.$emit("updateModel", self.loadMCF(response.data.value));
             self.importdialog = false;
           } else {
             var err = "Import failed; ";
@@ -235,7 +234,7 @@ export default {
           }
         })
         .catch(function (error) {
-          alert(error);
+          alert('Unknown error: ' + error);
         });
     },
     saveFile() {
@@ -252,12 +251,11 @@ export default {
     },
     MCFOpen() {
       let self = this;
-      var model = this.loadMCF(this.data);
+      var model = this.loadMCF(parse(this.data));
       self.$emit("updateModel", model);
       this.filedialog = false;
     },
-    loadMCF(yml) {
-      var model = parse(yml);
+    loadMCF(model) {
       //convert contacts and distributions to arrays
       var cnt = [];
       if (model["contact"]) {

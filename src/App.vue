@@ -62,19 +62,12 @@ export default {
       //copy key-values from object 2 levels deep
       let self = this;
       //self.model = mdl;
-      ["metadata","spatial","identification","acquisition","dataquality","content_info"].forEach(function(m){
+      ["metadata","spatial","identification","distribution","contact","acquisition","dataquality","content_info"].forEach(function(m){
         if (mdl[m]){
           if (!self.model[m]) self.model[m] = {};
           Object.keys(mdl[m]).forEach(function(k){self.model[m][k] = mdl[m][k]});
         }
-      });
-      ["distribution","contact"].forEach(function(m){
-        if (mdl[m][m+'s']){
-          if (!self.model[m]) self.model[m] = {};
-          var cnt = 0;
-          mdl[m][m+'s'].forEach(function(k){self.model[m][m+'-'+(cnt++)] = k});
-        }
-      });
+      })
     },
     saveData(mode) {
       let self = this;
@@ -85,20 +78,20 @@ export default {
       //convert contact/dist to objects
       var cnt = {}
       if (toExp['contact'] && toExp['contact']['contacts']){
+        var i=0;
         toExp['contact']['contacts'].forEach(function(k){
-          cnt[k['role']] = k;
+          cnt[k['role']?k['role']:'cnt'+(i++)] = k;
         })
       }
-      toExp['contact'] = cnt;
+      toExp.contact = cnt;  
       var dst = {}
       if (toExp['distribution'] && toExp['distribution']['distributions']){
-        var i=0;
+        var j=0;
         toExp['distribution']['distributions'].forEach(function(k){
-          dst['dst'+(i++)] = k;
+          dst['dst'+(j++)] = k;
         })
       }
       toExp['distribution'] = dst;
-
       if (mode=='mcf'){
         self.download(stringify(toExp), 'yml');
       } else {
