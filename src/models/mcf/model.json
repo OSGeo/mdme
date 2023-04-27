@@ -143,7 +143,7 @@
                     "description": "main theme(s) of the dataset",
                     "items": {
                         "type": "string",
-                        "enum": [
+                    "enum": [
                             "geoscientificInformation",
                             "farming",
                             "elevation",
@@ -173,9 +173,7 @@
                 "accessconstraints": {
                     "type": "string",
                     "description": "access constraints applied to assure the protection of privacy or intellectual property, and any special\nrestrictions or limitations on obtaining the resource or metadata. If there are no accessconstraints,\nuse the term 'otherRestrictions'",
-                    "items": {
-                        "type": "string",
-                        "enum": [
+                    "enum": [
                             "patent",
                             "otherRestrictions",
                             "copyright",
@@ -185,7 +183,6 @@
                             "license",
                             "intellectualPropertyRights"
                         ]
-                    }
                 },
                 "rights": {
                     "type": "string",
@@ -201,7 +198,6 @@
                 },
                 "status": {
                     "description": "the status of the resource(s)",
-                    "items": {
                         "type": "string",
                         "enum": [
                             "planned",
@@ -212,12 +208,11 @@
                             "required",
                             "obsolete"
                         ]
-                    }
                 },
                 "maintenancefrequency": {
 
                     "description": "frequency with which modifications and deletions are made to the data after it is first produced",
-                    "items": {
+ 
                         "type": "string",
                         "enum": [
                             "continual",
@@ -233,7 +228,7 @@
                             "notPlanned",
                             "unknown"
                         ]
-                    }
+                    
                 },
                 "browsegraphic": {
                     "type": "string",
@@ -535,7 +530,6 @@
         "distribution": {
             "title": "Distribution information",
             "type": "object",
-            "description": "core mcf metadata",
             "properties": {
                 "distributions": { 
                     "title": "Distributions",

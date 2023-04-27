@@ -13,8 +13,6 @@
         "datestamp": ""  
     },
     "spatial": {
-        "datatype": null,
-        "geomtype": null
     },
     "distribution": [
         {
