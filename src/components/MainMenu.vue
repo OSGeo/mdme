@@ -136,7 +136,7 @@ import FileReader from "./FileReader";
 //import $RefParser from "@apidevtools/json-schema-ref-parser";
 //import mergeAllOf from "json-schema-merge-allof";
 import { parse } from "yaml";
-//import { clean } from "@/scripts/helpers.js";
+import { dict2array } from "@/scripts/helpers.js";
 
 var parseString = require("xml2js").parseString;
 
@@ -257,24 +257,13 @@ export default {
     },
     loadMCF(model) {
       //convert contacts and distributions to arrays
-      var cnt = [];
-      if (model["contact"]) {
-        Object.keys(model["contact"]).forEach(function (k) {
-          var newCnt = model["contact"][k];
-          newCnt["role"] = k;
-          cnt.push(newCnt);
-        });
-      }
-      model["contact"] = { contacts: cnt };
-      var dst = [];
-      if (model["distribution"]) {
-        Object.keys(model["distribution"]).forEach(function (k) {
-          dst.push(model["distribution"][k]);
-        });
-      }
-      model["distribution"] = { distributions: dst };
+      model.contact = { contacts: dict2array(model["contact"],"role") };
+      if (!model.identification) model.identification = {};
+      model.identification.keywords = dict2array(model.identification.keywords);
+      model.distribution = { distributions: dict2array(model["distribution"],"type") };
       //todo: verify if this is valid mcf, you could merge the json with a default json
       //if (this.data.mcf && this.data.mcf.version && this.data.mcf.version == "1.0"){}
+      console.log(model);
       return model;
     },
     fetchDOI() {

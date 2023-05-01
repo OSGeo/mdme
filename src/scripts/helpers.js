@@ -38,6 +38,32 @@ export function clean(word) {
     }
 }
 
+export function array2dict(arr,key){
+    var res = {}
+    if (arr){
+    arr.forEach(function(k, i){
+        //todo: check key is unique
+        res[(key&&k[key])?k[key]:'i'+(i++)] = k;
+      })
+    }
+    return res
+}
+
+export function dict2array(dict,key){
+    var res = []
+    if (dict){
+        Object.keys(dict).forEach(function (k) {
+            var newCnt = dict[k];
+            //use key as 
+            if (key && (!newCnt[key] || newCnt[key]=="")){ 
+                newCnt[key] = k;
+            }
+            res.push(newCnt);
+        });
+    }
+    return res
+}
+
 export function hasLinks(feature) {
     return feature && feature.links && feature.links.length > 0;
 }

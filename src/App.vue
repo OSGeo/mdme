@@ -21,6 +21,7 @@ import '@koumoul/vjsf/lib/VJsf.css'
 import '@koumoul/vjsf/lib/deps/third-party.js'
 import MainMenu from './components/MainMenu.vue'
 import { stringify } from "yaml";
+import { array2dict } from "@/scripts/helpers.js";
 
 const vocab = "mcf"; //ogcapi-record
 
@@ -76,22 +77,10 @@ export default {
       }
       let toExp = Object.assign({}, this.model);
       //convert contact/dist to objects
-      var cnt = {}
-      if (toExp['contact'] && toExp['contact']['contacts']){
-        var i=0;
-        toExp['contact']['contacts'].forEach(function(k){
-          cnt[k['role']?k['role']:'cnt'+(i++)] = k;
-        })
-      }
-      toExp.contact = cnt;  
-      var dst = {}
-      if (toExp['distribution'] && toExp['distribution']['distributions']){
-        var j=0;
-        toExp['distribution']['distributions'].forEach(function(k){
-          dst['dst'+(j++)] = k;
-        })
-      }
-      toExp['distribution'] = dst;
+      toExp.contact = array2dict(toExp.contact.contacts,"role");
+      toExp.distribution = array2dict(toExp.distribution.distributions);
+      if (!toExp.identification) toExp.identification = {};
+      toExp.identification.keywords = array2dict(toExp.identification.keywords);
       if (mode=='mcf'){
         self.download(stringify(toExp), 'yml');
       } else {
