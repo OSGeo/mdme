@@ -89,21 +89,32 @@
                     "description": "brief narrative summary of the content of the resource(s)"
                 },
                 "keywords": {
-                    "type": "object",
-                    "patternProperties": {
-                        "^.*": {
-                            "type": "object",
-                            "description": "The key name indicates the type of keywords (either schema specific\nof user defined).  The values are the keywords, type, and codelists.",
+                    "type": "array",
+                    "description": "Sets of keywords, either or not from a thesaurus",
+                    "items": {
+                        "type": "object",
                             "properties": {
-                                "keywords": {
-                                    "type": "array",
-                                    "items": {
-                                        "type": "string"
+                                "vocabulary": {
+                                    "type": "object",
+                                    "properties": {
+                                        "name": {
+                                            "type": "string",
+                                            "title": "Vocabulary title",
+                                            "description": "Name of the source of the keywords"
+                                        },
+                                        "url": {
+                                            "type": "string",
+                                            "title": "Vocabulary URL",
+                                            "format": "uri",
+                                            "description": "URL of source of the keywords"
+                                        }
                                     },
-                                    "description": "category keywords"
-                                },
+                                    "required": [
+                                    ]
+                            },
                                 "keywords_type": {
                                     "type": "string",
+                                    "title": "Type of keywords",
                                     "description": "subject matter used to group similar keywords",
                                     "enum": [
                                         "discipline",
@@ -113,28 +124,14 @@
                                         "theme"
                                     ]
                                 },
-                                "keywords_codelist": {
-                                    "type": "string",
-                                    "description": "specific code list URL (for advanced use cases, else the default\nis as per the given specified schema)"
-                                },
-                                "vocabulary": {
-                                    "type": "object",
-                                    "properties": {
-                                        "name": {
-
-                                            "description": "name of the source of keywords"
-                                        },
-                                        "url": {
-                                            "type": "string",
-                                            "format": "uri",
-                                            "description": "URL of source of keywords"
-                                        }
+                                "keywords": {
+                                    "type": "array",
+                                    "items": {
+                                        "type": "string"
                                     },
-                                    "required": [
-                                        "name"
-                                    ]
+                                    "title": "Keywords"
                                 }
-                            }
+                                
                         }
                     }
                 },
