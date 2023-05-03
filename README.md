@@ -1,28 +1,33 @@
 
 ![MDME](./src/components/img/logo.svg)
 
-A web based (Node/Vue.js) application to populate YAML/JSON oriented [metadata records](https://en.wikipedia.org/wiki/Geospatial_metadata). The editor supports multiple metadata models (and can easily be extended),  currently supported are:
+A web based (Node/Vue.js) application to populate YAML/JSON oriented [metadata records](https://en.wikipedia.org/wiki/Geospatial_metadata). The editor supports multiple metadata models (and models can be extended), currently supported are:
 - [MCF](https://geopython.github.io/pygeometa/reference/mcf/) 
 - [OGC API - Records](https://ogcapi.ogc.org/records/) 
 - [Data Package](https://specs.frictionlessdata.io/data-package/)
 
 The app is currently in BETA, improvement suggestions very welcomed.
 
-A live demo can be found at [GitHub](https://osgeo.github.io/mdme).
+Deployment of latest version can be found at [GitHub.io](https://osgeo.github.io/mdme).
 
 ## Capabilities 
 
 - Open local metadata (MCF)
 - Import metadata from:
-  - DOI (extract DOI metadata as BibTeX)
+  - DOI (extract DOI metadata as DataCite)
   - WMS (extract metadata from Capabilities)
-  - iso19139 (TODO!)
+  - iso19139 (via metadata conversion service provided by [pygeoapi.io](https://demo.pygeoapi.io/master)
+- Export metadata (via metadata conversion service)
+  - iso19139
+  - OGCAPI-Records
+  - Spatio Temporal Asset Catalog (STAC)
+  - DCAT
 - edit metadata
 - save metadata 
 
 Note that the application runs client side only. No content is send to a server. Although the client can easily be extended to store the output in a Git repository or a catalogue system, like [pygeoapi](https://pygeoapi.io), [pycsw](https://pycsw.org), [Geonetwork opensource](https://geonetwork-opensource.org) or [CKAN](https://ckan.org).
 
-An exception are the import and export metadata, which use a metadata transformation service provided by [demo.pygeoapi.io](https://demo.pygeoapi.io/master).
+Exceptions are import and export metadata, which use a metadata transformation service provided by [demo.pygeoapi.io](https://demo.pygeoapi.io/master).
 
 ## About MCF
 
