@@ -39,6 +39,12 @@
         "id": "",
         "title": "",
         "abstract": "",
+        "dates": {
+            "creation": "",
+            "publication": "",
+            "revision": ""
+        },
+        "edition": "",
         "temporalextent": "",
         "geographicalextent": "",
         "modDate": "",

@@ -163,6 +163,10 @@
                         ]
                     }
                 },
+                "edition": {
+                    "type": "string",
+                    "description": "Version of the resource"
+                },
                 "fees": {
                     "type": "string",
                     "description": "fees and terms for retreiving the resource. Include monetary units (as specified in ISO 4217). If there\nare no fees, use the term 'None'"
@@ -207,9 +211,7 @@
                         ]
                 },
                 "maintenancefrequency": {
-
                     "description": "frequency with which modifications and deletions are made to the data after it is first produced",
- 
                         "type": "string",
                         "enum": [
                             "continual",
@@ -234,7 +236,6 @@
                 "dates": {
                     "type": "object",
                     "properties": {
-                        "anyOf": {
                             "creation": {
                                 "format": "date",
                                 "type": "string"
@@ -247,7 +248,6 @@
                                 "format": "date",
                                 "type": "string"
                             }
-                        }
                     }
                 },
                 "extents": {
