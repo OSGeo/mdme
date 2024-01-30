@@ -255,54 +255,60 @@
                     "description": "spatial and temporal extents",
                     "properties": {
                         "spatial": {
-                            "type": "object",
-                            "description": "spatial extent and CRS",
-                            "properties": {
-                                "bbox": {
-                                    "type": "array",
-                                    "description": "bounding box of resource",
-                                    "items": {
-                                        "type": "number"
+                            "type": "array"
+                            "items": {
+                                "type": "object",
+                                "description": "spatial extent and CRS",
+                                "properties": {
+                                    "bbox": {
+                                        "type": "array",
+                                        "description": "bounding box of resource",
+                                        "items": {
+                                            "type": "number"
+                                        },
+                                        "minItems": 4,
+                                        "maxItems": 6
                                     },
-                                    "minItems": 4,
-                                    "maxItems": 6
-                                },
-                                "crs": {
-                                    "type": "string",
-                                    "description": "coordinate reference system of bbox",
-                                    "default": "http://www.opengis.net/def/crs/OGC/1.3/CRS84"
-                                }
+                                    "crs": {
+                                        "type": "integer",
+                                        "description": "coordinate reference system of bbox",
+                                        "default": 4326
+                                    }
                             },
                             "required": []
+                            }
                         },
                         "temporal": {
-                            "type": "object",
-                            "description": "temporal extent of resource",
-                            "properties": {
-                                "begin": {
-                                    "type": [
-                                        "string",
-                                        "null"
-                                    ],
-                                    "format": "date-time",
-                                    "nullable": true
-                                },
-                                "end": {
-                                    "type": [
-                                        "string",
-                                        "null"
-                                    ],
-                                    "format": "date-time",
-                                    "nullable": true
-                                },
-                                "resolution": {
-                                    "type": "string",
-                                    "description": "Minimum time period resolvable in the dataset, as an ISO 8601 duration"
+                            "type": "array",
+                            "items": {
+                                "type": "object",
+                                "description": "temporal extent of resource",
+                                "properties": {
+                                    "begin": {
+                                        "type": [
+                                            "string",
+                                            "null"
+                                        ],
+                                        "format": "date-time",
+                                        "nullable": true
+                                    },
+                                    "end": {
+                                        "type": [
+                                            "string",
+                                            "null"
+                                        ],
+                                        "format": "date-time",
+                                        "nullable": true
+                                    },
+                                    "resolution": {
+                                        "type": "string",
+                                        "description": "Minimum time period resolvable in the dataset, as an ISO 8601 duration"
+                                    }
                                 }
                             }
-                        }
-                    },
-                    "required": []
+                        },
+                        "required": []
+                    }
                 }
             },
             "required": [
