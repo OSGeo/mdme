@@ -93,45 +93,43 @@
                     "description": "Sets of keywords, either or not from a thesaurus",
                     "items": {
                         "type": "object",
-                            "properties": {
-                                "vocabulary": {
-                                    "type": "object",
-                                    "properties": {
-                                        "name": {
-                                            "type": "string",
-                                            "title": "Vocabulary title",
-                                            "description": "Name of the source of the keywords"
-                                        },
-                                        "url": {
-                                            "type": "string",
-                                            "title": "Vocabulary URL",
-                                            "format": "uri",
-                                            "description": "URL of source of the keywords"
-                                        }
+                        "properties": {
+                            "vocabulary": {
+                                "type": "object",
+                                "properties": {
+                                    "name": {
+                                        "type": "string",
+                                        "title": "Vocabulary title",
+                                        "description": "Name of the source of the keywords"
                                     },
-                                    "required": [
-                                    ]
-                            },
-                                "keywords_type": {
-                                    "type": "string",
-                                    "title": "Type of keywords",
-                                    "description": "subject matter used to group similar keywords",
-                                    "enum": [
-                                        "discipline",
-                                        "place",
-                                        "stratum",
-                                        "temporal",
-                                        "theme"
-                                    ]
+                                    "url": {
+                                        "type": "string",
+                                        "title": "Vocabulary URL",
+                                        "format": "uri",
+                                        "description": "URL of source of the keywords"
+                                    }
                                 },
-                                "keywords": {
-                                    "type": "array",
-                                    "items": {
-                                        "type": "string"
-                                    },
-                                    "title": "Keywords"
-                                }
-                                
+                                "required": []
+                            },
+                            "keywords_type": {
+                                "type": "string",
+                                "title": "Type of keywords",
+                                "description": "subject matter used to group similar keywords",
+                                "enum": [
+                                    "discipline",
+                                    "place",
+                                    "stratum",
+                                    "temporal",
+                                    "theme"
+                                ]
+                            },
+                            "keywords": {
+                                "type": "array",
+                                "items": {
+                                    "type": "string"
+                                },
+                                "title": "Keywords"
+                            }
                         }
                     }
                 },
@@ -140,7 +138,7 @@
                     "description": "main theme(s) of the dataset",
                     "items": {
                         "type": "string",
-                    "enum": [
+                        "enum": [
                             "geoscientificInformation",
                             "farming",
                             "elevation",
@@ -175,15 +173,15 @@
                     "type": "string",
                     "description": "access constraints applied to assure the protection of privacy or intellectual property, and any special\nrestrictions or limitations on obtaining the resource or metadata. If there are no accessconstraints,\nuse the term 'otherRestrictions'",
                     "enum": [
-                            "patent",
-                            "otherRestrictions",
-                            "copyright",
-                            "trademark",
-                            "patentPending",
-                            "restricted",
-                            "license",
-                            "intellectualPropertyRights"
-                        ]
+                        "patent",
+                        "otherRestrictions",
+                        "copyright",
+                        "trademark",
+                        "patentPending",
+                        "restricted",
+                        "license",
+                        "intellectualPropertyRights"
+                    ]
                 },
                 "rights": {
                     "type": "string",
@@ -199,35 +197,34 @@
                 },
                 "status": {
                     "description": "the status of the resource(s)",
-                        "type": "string",
-                        "enum": [
-                            "planned",
-                            "historicalArchive",
-                            "completed",
-                            "onGoing",
-                            "underDevelopment",
-                            "required",
-                            "obsolete"
-                        ]
+                    "type": "string",
+                    "enum": [
+                        "planned",
+                        "historicalArchive",
+                        "completed",
+                        "onGoing",
+                        "underDevelopment",
+                        "required",
+                        "obsolete"
+                    ]
                 },
                 "maintenancefrequency": {
                     "description": "frequency with which modifications and deletions are made to the data after it is first produced",
-                        "type": "string",
-                        "enum": [
-                            "continual",
-                            "daily",
-                            "weekly",
-                            "fortnightly",
-                            "monthly",
-                            "quarterly",
-                            "biannually",
-                            "annually",
-                            "asNeeded",
-                            "irregular",
-                            "notPlanned",
-                            "unknown"
-                        ]
-                    
+                    "type": "string",
+                    "enum": [
+                        "continual",
+                        "daily",
+                        "weekly",
+                        "fortnightly",
+                        "monthly",
+                        "quarterly",
+                        "biannually",
+                        "annually",
+                        "asNeeded",
+                        "irregular",
+                        "notPlanned",
+                        "unknown"
+                    ]
                 },
                 "browsegraphic": {
                     "type": "string",
@@ -236,18 +233,18 @@
                 "dates": {
                     "type": "object",
                     "properties": {
-                            "creation": {
-                                "format": "date",
-                                "type": "string"
-                            },
-                            "publication": {
-                                "format": "date",
-                                "type": "string"
-                            },
-                            "revision": {
-                                "format": "date",
-                                "type": "string"
-                            }
+                        "creation": {
+                            "format": "date",
+                            "type": "string"
+                        },
+                        "publication": {
+                            "format": "date",
+                            "type": "string"
+                        },
+                        "revision": {
+                            "format": "date",
+                            "type": "string"
+                        }
                     }
                 },
                 "extents": {
@@ -255,7 +252,7 @@
                     "description": "spatial and temporal extents",
                     "properties": {
                         "spatial": {
-                            "type": "array"
+                            "type": "array",
                             "items": {
                                 "type": "object",
                                 "description": "spatial extent and CRS",
@@ -274,8 +271,8 @@
                                         "description": "coordinate reference system of bbox",
                                         "default": 4326
                                     }
-                            },
-                            "required": []
+                                },
+                                "required": []
                             }
                         },
                         "temporal": {
@@ -304,10 +301,10 @@
                                         "type": "string",
                                         "description": "Minimum time period resolvable in the dataset, as an ISO 8601 duration"
                                     }
-                                }
+                                },
+                                "required": []
                             }
-                        },
-                        "required": []
+                        }
                     }
                 }
             },
@@ -405,7 +402,6 @@
                                 "description": "human readable title of attribute"
                             },
                             "abstract": {
-
                                 "description": "description of attribute"
                             },
                             "url": {
@@ -530,7 +526,7 @@
             "title": "Distribution information",
             "type": "object",
             "properties": {
-                "distributions": { 
+                "distributions": {
                     "title": "Distributions",
                     "type": "array",
                     "items": {
@@ -691,42 +687,49 @@
             ]
         },
         "i18n_array": {
-            "oneOf": [{
+            "oneOf": [
+                {
                     "type": "string"
                 },
                 {
                     "type": "object",
                     "patternProperties": {
                         ".*_\\w{2}$": {
-                            "allOf": [{
-                                "type": "array",
-                                "items": {
-                                    "type": "string"
+                            "allOf": [
+                                {
+                                    "type": "array",
+                                    "items": {
+                                        "type": "string"
+                                    }
                                 }
-                            }]
+                            ]
                         }
                     }
                 }
             ]
         },
         "i18n_string": {
-            "oneOf": [{
+            "oneOf": [
+                {
                     "type": "string"
                 },
                 {
                     "type": "object",
                     "patternProperties": {
                         ".*_\\w{2}$": {
-                            "allOf": [{
-                                "type": "string"
-                            }]
+                            "allOf": [
+                                {
+                                    "type": "string"
+                                }
+                            ]
                         }
                     }
                 }
             ]
         },
         "date_or_datetime_string": {
-            "anyOf": [{
+            "anyOf": [
+                {
                     "type": "string",
                     "format": "date"
                 },
