@@ -46,16 +46,17 @@
         },
         "edition": "",
         "extents": {
-                "spatial": [{"bbox":[],"crs":4326}],
+                "spatial": [{"bbox":[0,0,0,0],"crs":4326}],
                 "temporal": [{"begin":"","end":""}]
             },
         "modDate": "",
         "keywords": [],
         "language": "en",
         "status": "completed",
-        "maintenancefrequency": "",
+        "maintenancefrequency": "irregular",
         "usageconstraints": "",
-        "accessconstraints": "",
+        "accessconstraints": "otherRestrictions",
+        "rights": "CC-BY 4.0",
         "topic": ""
     }
 }

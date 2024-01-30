@@ -249,13 +249,13 @@
                 },
                 "extents": {
                     "type": "object",
-                    "description": "spatial and temporal extents",
+                    "description": "Coverage of the data in time and space",
                     "properties": {
                         "spatial": {
                             "type": "array",
+                            "description": "spatial extents",
                             "items": {
                                 "type": "object",
-                                "description": "spatial extent and CRS",
                                 "properties": {
                                     "bbox": {
                                         "type": "array",
@@ -276,25 +276,23 @@
                             }
                         },
                         "temporal": {
-                            "type": "array",
+                            "type": "array",                                
+                            "description": "temporal extents of resource",
                             "items": {
                                 "type": "object",
-                                "description": "temporal extent of resource",
                                 "properties": {
                                     "begin": {
                                         "type": [
-                                            "string",
-                                            "null"
+                                            "string"
                                         ],
-                                        "format": "date-time",
+                                        "format": "date",
                                         "nullable": true
                                     },
                                     "end": {
                                         "type": [
-                                            "string",
-                                            "null"
+                                            "string"
                                         ],
-                                        "format": "date-time",
+                                        "format": "date",
                                         "nullable": true
                                     },
                                     "resolution": {
