@@ -45,8 +45,10 @@
             "revision": ""
         },
         "edition": "",
-        "temporalextent": "",
-        "geographicalextent": "",
+        "extents": {
+                "spatial": [{"bbox":[],"crs":4326}],
+                "temporal": [{"begin":"","end":""}]
+            },
         "modDate": "",
         "keywords": [],
         "language": "en",
