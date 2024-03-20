@@ -22,6 +22,7 @@ import '@koumoul/vjsf/lib/deps/third-party.js'
 import MainMenu from './components/MainMenu.vue'
 import { stringify } from "yaml";
 import { array2dict } from "@/scripts/helpers.js";
+import "@/scripts/helpers.css";
 
 const vocab = "mcf"; //ogcapi-record
 
