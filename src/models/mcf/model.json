@@ -307,9 +307,7 @@
                 }
             },
             "required": [
-                "title",
-                "abstract",
-                "topiccategory"
+                "title"
             ]
         },
         "spatial": {

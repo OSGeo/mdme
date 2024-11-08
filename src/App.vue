@@ -27,7 +27,7 @@ import "@/scripts/helpers.css";
 const vocab = "mcf"; //ogcapi-record
 
 //import model
-const mdl = require('./models/'+vocab+'/model.json');
+let mdl = require('./models/'+vocab+'/model.json');
 //import template
 const tpl = require('./models/'+vocab+'/template.json');
 

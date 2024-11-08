@@ -143,6 +143,24 @@ var parseString = require("xml2js").parseString;
 export default {
   emits: ["updateModel"],
   name: "IntroPage",
+  setup() {
+    let self = this
+    const searchParams = new URLSearchParams(document.location.search);
+    if (searchParams.has('mcf') && searchParams.get('mcf').startsWith('http')){
+      try {
+        fetch(decodeURI(searchParams.get('mcf'))).then(
+          function (response) {
+            if (response.data) {
+              var model = this.loadMCF(parse(self.loadMCF(response.data.value)));
+              self.$emit("updateModel", model);
+            }
+          }
+        )
+      } catch (error) {
+        console.error(error);
+      }
+    }
+  },  
   data: () => ({
     importdialog: false,
     filedialog: false,
