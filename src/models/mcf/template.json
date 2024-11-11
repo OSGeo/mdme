@@ -32,7 +32,7 @@
             "positionname": "",
             "country": "",
             "email": "",
-            "role": ""
+            "role": "pointOfContact"
         }
     ],
     "identification": {

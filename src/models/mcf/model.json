@@ -465,9 +465,16 @@
                                 "type": "string",
                                 "description": "name of the responsible person-surname"
                             },
+                            "role": {
+                                "type": "string",
+                                "enum": [
+                                    "resourceProvider","custodian","owner","user","distributor","originator","pointOfContact","principalInvestigator","processor","publisher","author"
+                                ],
+                                "description": "role of the responsible person"
+                            },
                             "positionname": {
                                 "type": "string",
-                                "description": "role or position of the responsible person"
+                                "description": "position of the responsible person"
                             },
                             "phone": {
                                 "type": "string",
