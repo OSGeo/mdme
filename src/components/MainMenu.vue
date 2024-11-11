@@ -143,19 +143,14 @@ var parseString = require("xml2js").parseString;
 export default {
   emits: ["updateModel"],
   name: "IntroPage",
-  setup() {
+  async mounted() {
     let self = this
     const searchParams = new URLSearchParams(document.location.search);
     if (searchParams.has('mcf') && searchParams.get('mcf').startsWith('http')){
       try {
-        fetch(decodeURI(searchParams.get('mcf'))).then(
-          function (response) {
-            if (response.data) {
-              var model = this.loadMCF(parse(self.loadMCF(response.data.value)));
-              self.$emit("updateModel", model);
-            }
-          }
-        )
+        fetch(decodeURI(searchParams.get('mcf')))
+          .then(r => r.text()) 
+          .then(body => self.$emit("updateModel", this.loadMCF(parse(body))))
       } catch (error) {
         console.error(error);
       }
@@ -281,7 +276,6 @@ export default {
       model.distribution = { distributions: dict2array(model["distribution"],"type") };
       //todo: verify if this is valid mcf, you could merge the json with a default json
       //if (this.data.mcf && this.data.mcf.version && this.data.mcf.version == "1.0"){}
-      console.log(model);
       return model;
     },
     fetchDOI() {
